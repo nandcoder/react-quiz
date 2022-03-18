@@ -10,22 +10,26 @@ function Quiz({ ques }) {
   let i = 1;
   return (
     <div className="Quiz">
-      {ques.map((questionS) => {
-        return (
-          <Ques
-            key={i++}
-            no={i}
-            desc={questionS.question}
-            WA={questionS.incorrect_answers}
-            AC={questionS.correct_answer}
-          />
-        );
-      })}
-      {!submit && (
-        <button onClick={submitting()} className="btn">
-          SUBMIT
-        </button>
-      )}
+      <div className="wrapQS">
+        <div className="QS">
+          {ques.map((questionS) => {
+            return (
+              <Ques
+                key={i++}
+                no={i}
+                desc={questionS.question}
+                WA={questionS.incorrect_answers}
+                AC={questionS.correct_answer}
+              />
+            );
+          })}
+        </div>
+        {!submit && (
+          <button onClick={submitting} className="btn btn-info" id="submit">
+            SUBMIT
+          </button>
+        )}
+      </div>
     </div>
   );
 }
