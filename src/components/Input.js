@@ -1,11 +1,6 @@
 import React from "react";
 
-function Input({ option, no }) {
-  function decodeHtml(html) {
-    var txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-  }
+function Input({ name, option, decoder }) {
   return (
     <div className="col-lg-6 col-md-12">
       <div className="options">
@@ -14,9 +9,9 @@ function Input({ option, no }) {
           id={option}
           value={option}
           className="radio"
-          name={no}
+          name={name}
         />
-        <label for={option}>{decodeHtml(option)}</label>
+        <label htmlFor={option}>{decoder(option)}</label>
         <br />
       </div>
     </div>
