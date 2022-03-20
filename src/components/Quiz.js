@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import swal from "sweetalert";
 import Ques from "./Ques";
-import Results from "./Results";
 
 function Quiz({ ques }) {
   const [btnText, setBtnText] = useState("Submit");
@@ -15,6 +15,7 @@ function Quiz({ ques }) {
       submitting();
     } else if (btnText === "Submit") {
       setBtnText("Confirm");
+      swal("ALERT!!!", "You have unattempted questions. 'Confirm' to submit!");
     } else {
       submitting();
       setBtnText("Submit");
@@ -74,8 +75,10 @@ function Quiz({ ques }) {
         correctAnswer.parentElement.style.backgroundColor = "lime ";
       }
     });
-    console.log(count);
     setScore(count);
+    console.log(count);
+    console.log(score);
+    swal(`Your score is ${count} out of 10`);
     return 0;
   }
   let i = 1;
@@ -95,11 +98,6 @@ function Quiz({ ques }) {
             );
           })}
         </div>
-        {btnText !== "Submit" && (
-          <p className="results">
-            ALERT!!! You have unattempted questions. Press 'Confirm' to submit.
-          </p>
-        )}
         {!submit ? (
           <button
             onClick={handleClick}
@@ -110,7 +108,7 @@ function Quiz({ ques }) {
             {btnText}
           </button>
         ) : (
-          <Results score={score} />
+          <p id="submit">Press F5 to Play Again</p>
         )}
       </div>
     </div>
