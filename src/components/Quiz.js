@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import swal from 'sweetalert';
 import Ques from './Ques';
+import { GridLoader } from 'react-spinners';
 
-function Quiz({ ques, setQues, reloader, setReloader }) {
+function Quiz({ ques, setQues, reloader, setReloader, fetching }) {
     const [btnText, setBtnText] = useState('Submit');
     const [submit, setSubmit] = useState(false);
     let AC = [];
@@ -89,14 +90,14 @@ function Quiz({ ques, setQues, reloader, setReloader }) {
     let i = 1;
     return (
         <div className='Quiz'>
-            <div className="wrapQS">
+            {fetching? <GridLoader color="#36d7b7" margin={20} size={50} /> : (<div className="wrapQS">
                 <div className="QS">
                     {ques.map((questionS) => {
                         return <Ques key={i++} no={i} desc={questionS.question} WA={questionS.incorrect_answers} AC={questionS.correct_answer} />
                     })}
                 </div>
                 {!submit ? <button onClick={handleClick} type="submit" className='btn btn-info' id='submit'>{btnText}</button> : <button onClick={tryAgain} className='btn btn-primary' id='submit'>Try Again</button>}
-            </div>
+            </div>)}
         </div>
     )
 }
