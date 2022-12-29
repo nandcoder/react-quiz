@@ -1,3 +1,3 @@
 # react-quiz
-##Created with CodeSandbox
-Made this project using ReactJS
+Created with CodeSandbox
+#Made this project using ReactJS
